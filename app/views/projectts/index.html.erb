@@ -1,0 +1,28 @@
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Manager</th>
+    <th>Developer</th>
+    <th>Qa</th>
+  </tr>
+  <% @projectts.each do |p| %>
+  <tr>
+    <td><%= p.title %></td>
+    <td><%= p.description %></td>
+    <td><%= p.manager.name %></td>
+    <td><%= p.developer.name %></td>
+    <td><%= link_to 'Show Project', projectt_path(p) %></td>
+    <td>
+      <%= button_to 'Delete' , projectt_path(p), method: :delete, data: {
+      confirm: "are you sure"} %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+<% if user_signed_in? %>
+<% if current_user.user_type = 0 %> 
+<%= link_to 'Create new project ',
+new_projectt_path %>
+ <% end %>
+<% end %>

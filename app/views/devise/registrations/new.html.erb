@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <div class="col-5 offset-3">
+      <div class="card">
+
+
+
+        <div class="card-header bg-dark text-white text-center">
+          <h2>Sign up</h2>
+
+        </div>
+        
+        
+        <div class = "card-body bg-secondary text-center "> 
+
+
+
+
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= render "devise/shared/error_messages" , resource: resource %>
+
+              <div class=" form-group">
+                <!-- <%= f.label :name %><br /> -->
+                  <%= f.text_field :name, placeholder: "Enter Your Name" %>
+              </div>
+
+              <div class="form-group">
+                <!-- <%= f.label :email %><br /> -->
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email",  placeholder: "Enter your email"%>
+              </div>
+
+              <div class="form-group">
+                <!-- <%= f.label :password %> -->
+                  <% if @minimum_password_length %>
+                      <%= f.password_field :password, autocomplete: "new-password" ,
+                        placeholder: "#{@minimum_password_length} characters min password" %>
+                    <% end %><br />
+              </div>
+
+              <div class="form-group">
+                <!-- <%= f.label :password_confirmation %><br /> -->
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: " Confirm Password" %>
+              </div>
+
+              <div class="form-group btn btn-secondary ">
+                <%= f.select(:user_type, User.user_types.keys.map {|role| [role.titleize,role]}) %>
+              </div>
+
+              <div class="form-group btn btn-outline-light justify-content-center ">
+                <%= f.submit "Sign up" , data: {turbo: false} %>
+              </div>
+              <% end %>
+        </div>
+        <div class="card-footer bg-dark text-center text-white ">
+          <button type="submit" class="btn btn-outline-light">
+            <%= render "devise/shared/links" %>
+          </button>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

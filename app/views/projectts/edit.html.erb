@@ -1,0 +1,20 @@
+<h2>Project Edit Page</h2>
+<%= form_for @projectt do |f| %>
+<p>
+  <%= f.label :title %>
+  <br />
+  <%= f.text_field :title %><br />
+</p>
+<p>
+  <%= f.label :description %><br />
+  <%= f.text_area :description %>
+</p>
+<h3>Developer</h3>
+<%= f.select :developer_id, User.all.developer.collect {|p| [ p.name, p.id ] }%>
+
+<h3>Qa</h3>
+<%= f.select :qa_id, User.all.qa.collect {|p| [ p.name, p.id ] } %>
+
+<p><%= f.submit %></p>
+
+<% end %>
