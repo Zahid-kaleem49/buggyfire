@@ -1,0 +1,38 @@
+      <%= javascript_include_tag :dropdown %>
+
+      <% if notice %>
+      <%= notice %>
+      <% end %>
+
+<%= form_with(model: @bug, url: bug_path) do |b| %>
+<p>
+  <%= b.label :'Title of Bug'%>
+  <br />
+  <%= b.text_field :title %>
+</p>
+<p>
+  <%= b.label :'Description of Bug'%>
+  <br />
+  <%= b.text_area :description %>
+</p>
+<p>
+  <%= b.label :'Select Bug Date'%> <br>
+  <%= b.date_field :deadline %>
+  <br />
+  </p>
+  
+  <p>
+    <!-- <%= b.label :'Select Bug or Feature' %> <br> -->
+    <%= b.select :types, [["Bug", "Bug"], ["Feature", "Feature"]],{prompt: "Select Type"}, {onchange: 'getType();'} %>
+  </p>
+  <p>
+    <%= b.select :statuses, [], {prompt: "Select Status"} %>
+  </p>
+  </div>
+  <p>
+  <%= b.hidden_field :projectt_id, value: @projectt_id %> 
+  <%= b.submit 'Submit Bug' %>
+</p>
+
+<% end %>
+

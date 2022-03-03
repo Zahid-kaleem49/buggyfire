@@ -5,6 +5,9 @@
     <th>Manager</th>
     <th>Developer</th>
     <th>Qa</th>
+    <th>Delete Project</th>
+    <th>Add Bug</th>
+    <th>Show all Bugs</th>
   </tr>
   <% @projectts.each do |p| %>
   <tr>
@@ -17,6 +20,9 @@
       <%= button_to 'Delete' , projectt_path(p), method: :delete, data: {
       confirm: "are you sure"} %>
     </td>
+         <td><%= link_to 'Add Bug', bug_path({projectt_id: p.id}) %></td> %>
+         <td><%= link_to 'Show all bugs', bug_projectt_path(p) %></td>
+
   </tr>
   <% end %>
 </table>

@@ -1,0 +1,8 @@
+
+Project Id:<%= @projectt.id %><br>
+Project TiTle:<%= @projectt.title %><br>
+Project Description:<%= @projectt.description %> <br>
+Project Manager Name: <%= @projectt.manager.name %> <br>
+Project Deleloper Name: <%= @projectt.developer.name %> <br>
+Project Qa Name: <%= @projectt.qa.name %> <br>
+<%= link_to 'Add Bug', bug_path({projectt_id: @projectt.id}) %>

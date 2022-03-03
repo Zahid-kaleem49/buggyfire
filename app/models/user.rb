@@ -10,5 +10,4 @@ class User < ApplicationRecord
   has_many :manager_projectts, class_name: "Projectt", foreign_key: "manager_id"
   has_many :developer_projectts, class_name: "Projectt", foreign_key: "developer_id"
   has_many :qa_projectts, class_name: "Projectt", foreign_key: "qa_id"
-  
-  end
+end

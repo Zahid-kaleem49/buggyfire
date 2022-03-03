@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_22_092254) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_03_155951) do
+  create_table "bugs", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.string "types"
+    t.datetime "deadline"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "projectt_id"
+    t.string "statuses"
+    t.index ["projectt_id"], name: "index_bugs_on_projectt_id"
+  end
+
   create_table "projectts", force: :cascade do |t|
     t.string "title"
     t.string "description"
@@ -38,6 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_22_092254) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bugs", "projectts"
   add_foreign_key "projectts", "users", column: "developer_id"
   add_foreign_key "projectts", "users", column: "manager_id"
   add_foreign_key "projectts", "users", column: "qa_id"

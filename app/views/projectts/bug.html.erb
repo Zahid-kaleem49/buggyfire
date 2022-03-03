@@ -1,0 +1,15 @@
+<table>
+<tr>
+<th>Title of Bug</th>
+<th>Description</th>
+</tr>
+<% @bug.each do |b| %>
+<tr>
+
+<td><%= b.title %> <br></td>
+<td><%= b.description %> <br></td>
+<td><%= b.deadline %></td>
+<% end %>
+
+</tr>
+</table>
