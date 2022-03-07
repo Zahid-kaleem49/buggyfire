@@ -6,29 +6,32 @@
     <th>Developer</th>
     <th>Qa</th>
     <th>Delete Project</th>
-    <th>Add Bug</th>
     <th>Show all Bugs</th>
+    <th>Show all Features</th>
+   
   </tr>
   <% @projectts.each do |p| %>
-  <tr>
-    <td><%= p.title %></td>
-    <td><%= p.description %></td>
-    <td><%= p.manager.name %></td>
-    <td><%= p.developer.name %></td>
-    <td><%= link_to 'Show Project', projectt_path(p) %></td>
-    <td>
-      <%= button_to 'Delete' , projectt_path(p), method: :delete, data: {
+    <tr>
+      <td><%= p.title %></td>
+      <td><%= p.description %></td>
+      <td><%= p.manager.name %></td>
+      <td><%= p.developer.name %></td>
+      <td><%= p.qa.name%></td>
+      <td><%= link_to 'Show Project', projectt_path(p) %></td>
+      <td>
+        <%= button_to 'Delete' , projectt_path(p), method: :delete, data: {
       confirm: "are you sure"} %>
-    </td>
-         <td><%= link_to 'Add Bug', bug_path({projectt_id: p.id}) %></td> %>
-         <td><%= link_to 'Show all bugs', bug_projectt_path(p) %></td>
-
-  </tr>
+      </td>
+      <td><%= link_to 'Show all bugs', bug_bug_path(p) %></td>
+      <td> <%= link_to 'Show all features', feature_bug_path(p) %> </td>
+     
+       %>
+    </tr>
   <% end %>
 </table>
 <% if user_signed_in? %>
-<% if current_user.user_type = 0 %> 
-<%= link_to 'Create new project ',
+  <% if current_user.user_type == "manager" %>
+    <%= link_to 'Create new project ',
 new_projectt_path %>
- <% end %>
+  <% end %>
 <% end %>

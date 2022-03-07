@@ -1,15 +1,18 @@
 class ProjecttsController < ApplicationController
+  load_and_authorize_resource
+
   def new
     @projectt = Projectt.new
     # @user = User.all
   end
 
   def create
-    @projectt = Projectt.new(params_projectt)
-    debugger
+    @projectt = Projectt.new(projectt_params)
+
     # @projectt.developer_id = params[:projectt][:user][:dev_id]
     # @projectt.qa_id = params[:projectt][:user][:qa_id]
     @projectt.manager_id = current_user.id
+
     if @projectt.save
       redirect_to root_path
     end
@@ -31,12 +34,6 @@ class ProjecttsController < ApplicationController
     @projectts = Projectt.all
   end
 
-  def bug
-    @project = Projectt.find(params[:id])
-    @bug = @project.bugs
-    # debugger
-  end
-
   def show
     @projectt = Projectt.find(params[:id])
   end
@@ -54,7 +51,7 @@ class ProjecttsController < ApplicationController
 
   private
 
-  def params_projectt
+  def projectt_params
     params.require(:projectt).permit(:title, :description, :developer_id, :qa_id)
   end
 end

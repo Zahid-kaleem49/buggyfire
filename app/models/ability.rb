@@ -4,6 +4,19 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    can :read, Projectt
+    if user.present?
+      if user.manager?
+        can [:create, :update, :destroy], Projectt
+      elsif user.qa?
+        can [:new, :create], Bug
+      else
+        return
+      end
+    end
+
+  
+
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
@@ -29,12 +42,6 @@ class Ability
     #   can :update, Article, :published => true
     #
 
-
-    
-
-
-
-    
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
   end

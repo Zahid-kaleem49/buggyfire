@@ -1,12 +1,14 @@
 class BugsController < ApplicationController
+  load_and_authorize_resource
+
   def new
     @bug = Bug.new
     @type = ["feature", "bug"]
-    @projectt_id = params[:projectt_id]
   end
 
   def create
     @bug = Bug.new(bug_params)
+    debugger
     project = Projectt.find(params[:bug][:projectt_id])
     project.bugs.each do |b|
       if b.types == "Bug"
@@ -19,14 +21,23 @@ class BugsController < ApplicationController
     @projectt_id = params[:projectt_id]
     if @bug.errors.any?
       flash.notice = "Title of Bug already Included.Write different Bug Title"
-      
+
       render "new"
     elsif @bug.save
       redirect_to root_path
     end
   end
 
- 
+  def feature
+    @project = Projectt.find(params[:id])
+    @bug = @project.bugs
+  end
+
+  def bug
+    @project = Projectt.find(params[:id])
+    @bug = @project.bugs
+    # debugger
+  end
 
   private
 

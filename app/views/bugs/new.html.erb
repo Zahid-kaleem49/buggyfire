@@ -4,7 +4,7 @@
       <%= notice %>
       <% end %>
 
-<%= form_with(model: @bug, url: bug_path) do |b| %>
+<%= form_with(model: @bug, url: bugs_path) do |b| %>
 <p>
   <%= b.label :'Title of Bug'%>
   <br />
@@ -30,7 +30,7 @@
   </p>
   </div>
   <p>
-  <%= b.hidden_field :projectt_id, value: @projectt_id %> 
+  <%= b.hidden_field :projectt_id, value: params[:id] %> 
   <%= b.submit 'Submit Bug' %>
 </p>
 

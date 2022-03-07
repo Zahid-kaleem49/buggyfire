@@ -1,8 +1,8 @@
 <h1>BuggyFire Home Page</h1>
-<%= link_to 'Show Project', projectts_path %>
 <% if user_signed_in? %>
-<h3>Hi <%= current_user.name %><br /></h3>
-<% if current_user.user_type = 0 %> 
-<%= link_to 'Add project', new_projectt_path%>
-<% end %> 
+  <% if current_user.user_type == "manager" %>
+    <%= link_to 'Add New Project', new_projectt_path%>
+    
+  <% end %>
 <% end %>
+<br><%= link_to 'Show Projects', projectts_path %>
